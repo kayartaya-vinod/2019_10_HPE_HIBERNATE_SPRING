@@ -18,6 +18,10 @@
 		<mapping class="com.hpe.entity.Category" />
 		<mapping class="com.hpe.entity.Product" />
 		<mapping class="com.hpe.entity.Supplier" />
+		<mapping class="com.hpe.entity.Customer" />
+		<mapping class="com.hpe.entity.Employee" />
+		<mapping class="com.hpe.entity.Shipper" />
+		<mapping class="com.hpe.entity.Order" />
 		
 	</session-factory>
 </hibernate-configuration>

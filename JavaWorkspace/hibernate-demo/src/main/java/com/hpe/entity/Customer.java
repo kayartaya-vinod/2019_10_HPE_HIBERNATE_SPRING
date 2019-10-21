@@ -9,12 +9,14 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "customers")
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 public class Customer {
 	@Id
 	@Column(name = "customer_id")
