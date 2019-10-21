@@ -30,7 +30,7 @@ webPort=8082
 webSSL=false
 ```
 
-<img src="./assets/images/h2-client-1.png" width="90%">
+<img src="https://github.com/kayartaya-vinod/2019_04_HIBERNATE_SPRING_HPE/raw/master/assets/images/h2-client-1.png" width="90%">
 
 * Select **Generic H2 (Server)** from the *Saved settings* dropdown
 * Driver class - **org.h2.Driver** 
@@ -40,7 +40,7 @@ webSSL=false
 
 Click the **Connect** button.
 
-<img src="./assets/images/h2-client-2.png" width="90%">
+<img src="https://github.com/kayartaya-vinod/2019_04_HIBERNATE_SPRING_HPE/raw/master/assets/images/h2-client-2.png" width="90%">
 
 
 ### Download the database script from here:
@@ -136,7 +136,7 @@ The tables and relationships among the same is explained here:
 
 The following screen appears:
 
-<img src="./assets/images/lombok-setup-1.png" width="90%">
+<img src="https://github.com/kayartaya-vinod/2019_04_HIBERNATE_SPRING_HPE/raw/master/assets/images/lombok-setup-1.png" width="90%">
 
 If your eclipse is not listed, click the *Specify location...* button, and choose the *eclipse.ini* file of your eclipse. Then click the *Install/Update* button. Finally, click the *Quit installer* to exit the setup.
 
