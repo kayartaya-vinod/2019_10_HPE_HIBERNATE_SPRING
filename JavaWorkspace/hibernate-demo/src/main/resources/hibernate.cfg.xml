@@ -11,9 +11,13 @@
 		<property name="hibernate.connection.username">sa</property>
 		<property name="hibernate.connection.password"></property>
 
-		<property name="show_sql">true</property>
+		<property name="show_sql">false</property>
 		<property name="format_sql">true</property>
 		<property name="dialect">org.hibernate.dialect.H2Dialect</property>
+		
+		<mapping class="com.hpe.entity.Category" />
+		<mapping class="com.hpe.entity.Product" />
+		<mapping class="com.hpe.entity.Supplier" />
 		
 	</session-factory>
 </hibernate-configuration>

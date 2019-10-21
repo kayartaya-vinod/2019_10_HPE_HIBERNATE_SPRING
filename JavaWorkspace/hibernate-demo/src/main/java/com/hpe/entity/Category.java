@@ -1,9 +1,12 @@
 package com.hpe.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -16,7 +19,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
+@ToString(exclude = { "products", "picture" })
 public class Category {
 	@Id
 	@GeneratedValue(generator = "increment")
@@ -27,4 +30,18 @@ public class Category {
 	private String description;
 	private byte[] picture;
 
+	// Association Mapping - ONE category has MANY products
+	@OneToMany(mappedBy = "category") /// category is the field in Product.java
+	// @JoinColumn(name = "category_id") // foreign key in PRODUCTS table
+	private List<Product> products;
 }
+
+
+
+
+
+
+
+
+
+
