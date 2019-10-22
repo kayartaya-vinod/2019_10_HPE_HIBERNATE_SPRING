@@ -1,0 +1,39 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+
+http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+	version="2.1">
+
+	<persistence-unit name="unit1"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<!-- <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
+
+		<class>com.hpe.entity.Category</class>
+		<class>com.hpe.entity.Product</class>
+		<class>com.hpe.entity.Supplier</class>
+		<class>com.hpe.entity.LineItem</class>
+		<class>com.hpe.entity.Order</class>
+		<class>com.hpe.entity.Employee</class>
+		<class>com.hpe.entity.Customer</class>
+		<class>com.hpe.entity.Shipper</class>
+		<class>com.hpe.entity.Laptop</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:h2:tcp://localhost/~/2019_10_HIBERNATE_WITH_SPRING_HPE" />
+			<property name="javax.persistence.jdbc.user" value="sa" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.driver"
+				value="org.h2.Driver" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.H2Dialect" />
+		</properties>
+
+	</persistence-unit>
+
+
+</persistence>

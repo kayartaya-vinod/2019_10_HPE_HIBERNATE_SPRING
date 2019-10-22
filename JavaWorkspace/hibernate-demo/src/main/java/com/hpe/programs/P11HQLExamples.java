@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import com.hpe.entity.Product;
@@ -23,10 +24,21 @@ public class P11HQLExamples {
 		// getProductsByCategoryName("Condiments"); // Condiments --> categoryName
 		// getProductsByPage(4); // pageNum = 4
 		// getProductDetails(); // Name of product, category, supplier
-		getCategorywiseProductCount(); 
+		// getCategorywiseProductCount();
+		increaseProductPriceBy(1.0); // incrBy =  $1.0
 		
 		session.close();
 		factory.close();
+	}
+
+	static void increaseProductPriceBy(double incrBy) {
+		String hql = "update Product set unitPrice = unitPrice + ?0";
+		Transaction tx = session.beginTransaction();
+		Query<?> qry = session.createQuery(hql);
+		qry.setParameter(0, incrBy);
+		int rc = qry.executeUpdate(); // PreparedStatement.executeUpdate()
+		tx.commit();
+		System.out.println("Total " + rc + " products affected!");
 	}
 
 	static void getCategorywiseProductCount() {
