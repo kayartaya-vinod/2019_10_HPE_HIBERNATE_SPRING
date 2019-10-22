@@ -129,6 +129,7 @@ The tables and relationships among the same is explained here:
 ```
 
 <div id="how_to_use_lombok">
+	
 ### How to use lombok?
 
 * Windows - Double click the `lombok-1.18.4.jar`
