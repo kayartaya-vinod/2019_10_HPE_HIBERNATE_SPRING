@@ -22,9 +22,25 @@ public class P11HQLExamples {
 		// getProductsByPriceRange(50.0, 500.0); // min-> 50, max-> 500
 		// getProductsByCategoryName("Condiments"); // Condiments --> categoryName
 		// getProductsByPage(4); // pageNum = 4
-		getProductDetails(); // Name of product, category, supplier
+		// getProductDetails(); // Name of product, category, supplier
+		getCategorywiseProductCount(); 
+		
 		session.close();
 		factory.close();
+	}
+
+	static void getCategorywiseProductCount() {
+		// When you have a uni-directional association from Product to Category, use this:
+		// String hql = "select p.category.categoryName, count(p) from Product p group by p.category.categoryName";
+	
+		// when you have a uni-directional association from Category to Product, use this:
+		String hql = "select c.categoryName, count(p) from Category c join "
+				+ "c.products as p group by c.categoryName";
+		
+		Query<Object[]> qry = session.createQuery(hql, Object[].class);
+		qry.getResultList()
+			.stream()
+			.forEach(p -> System.out.printf("%-40s %-30s\n", p[0], p[1]));
 	}
 
 	static void getProductDetails() {
