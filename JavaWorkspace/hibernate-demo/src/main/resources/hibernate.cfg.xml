@@ -11,6 +11,8 @@
 		<property name="hibernate.connection.username">sa</property>
 		<property name="hibernate.connection.password"></property>
 
+		<!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+		
 		<property name="show_sql">false</property>
 		<property name="format_sql">true</property>
 		<property name="dialect">org.hibernate.dialect.H2Dialect</property>
@@ -22,6 +24,8 @@
 		<mapping class="com.hpe.entity.Employee" />
 		<mapping class="com.hpe.entity.Shipper" />
 		<mapping class="com.hpe.entity.Order" />
+		<mapping class="com.hpe.entity.LineItem" />
+		<mapping class="com.hpe.entity.Laptop" />
 		
 	</session-factory>
 </hibernate-configuration>
