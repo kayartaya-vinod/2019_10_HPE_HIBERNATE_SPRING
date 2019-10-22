@@ -128,6 +128,7 @@ The tables and relationships among the same is explained here:
 </dependency>
 ```
 
+<div id="how_to_use_lombok">
 ### How to use lombok?
 
 * Windows - Double click the `lombok-1.18.4.jar`
@@ -140,8 +141,9 @@ The following screen appears:
 
 If your eclipse is not listed, click the *Specify location...* button, and choose the *eclipse.ini* file of your eclipse. Then click the *Install/Update* button. Finally, click the *Quit installer* to exit the setup.
 
-Re-launch *eclipse* to use lombok.
+Re-launch *eclipse* to use lombok by closing it completely and opening it again.
 
+</div>
 ### Spring minimum dependencies
 
 ```xml
