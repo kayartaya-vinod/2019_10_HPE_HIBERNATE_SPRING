@@ -25,6 +25,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 		return DriverManager.getConnection(url, username, password);
 	}
 	
+
 	@Override
 	public long count() throws DaoException {
 		try(
