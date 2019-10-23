@@ -6,20 +6,24 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.hpe.entity.Category;
 import com.hpe.entity.Product;
 import com.hpe.entity.Supplier;
 
+@EnableTransactionManagement
 @Configuration
 @PropertySource("classpath:jdbc-info.properties")
+@ComponentScan(basePackages = { "com.hpe.dao", "com.hpe.service" })
 public class AppConfig5 {
 
 	@Value("${jdbc.driver_class_name}")
@@ -34,9 +38,19 @@ public class AppConfig5 {
 	@Value("${jdbc.password}")
 	private String password;
 
+	// register a bean of type PlatformTransactionManager (or one of its subtypes)
+	// called "txMgr" with spring container, and wire SessionFactory with this bean.
+	// This txMgr facilitates the session objects needed by HibernateTemplate, so
+	// that
+	// it can manage transactions on the session object.
+	@Bean(name = "txMgr")
+	public HibernateTransactionManager txMgr(SessionFactory factory) {
+		return new HibernateTransactionManager(factory);
+	}
+
 	// registering a new bean of type DataSource named as "ds"/"dataSource", with
 	// Spring container
-	@Bean 
+	@Bean
 	public DataSource h2Ds() {
 		BasicDataSource bds = new BasicDataSource();
 		bds.setDriverClassName(this.driver);
@@ -52,27 +66,17 @@ public class AppConfig5 {
 
 		return bds;
 	}
-	
-	@Bean 
-	public DataSource mysqlDs() {
-		BasicDataSource bds = new BasicDataSource();
-		bds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		bds.setUrl("jdbc:mysql://localhost/northwind");
-		bds.setUsername("root");
-		bds.setPassword("Welcome#123");
-		return bds;
-	}
 
 	// register a bean called "sessionFactory" of type
 	// org.hibernate.SessionFactory with spring container
 	@Bean(name = "sessionFactory")
-	public LocalSessionFactoryBean factory(@Qualifier("h2Ds") DataSource ds) { // dependency injection
+	public LocalSessionFactoryBean factory(DataSource ds) { // dependency injection
 		LocalSessionFactoryBean bean = new LocalSessionFactoryBean();
 		bean.setDataSource(ds); // manual wiring
 		bean.setAnnotatedClasses(Product.class, Category.class, Supplier.class);
 
 		Properties props = new Properties();
-		props.setProperty("hibernate.show_sql", "true");
+		props.setProperty("hibernate.show_sql", "false");
 		props.setProperty("hibernate.format_sql", "true");
 		props.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 
@@ -94,9 +98,3 @@ public class AppConfig5 {
 	}
 
 }
-
-
-
-
-
-
