@@ -46,12 +46,16 @@ public class P03TestProductDaoHibernateImpl {
 		System.out.println("Product name = " + p.getProductName());
 		System.out.println("Price        = $" + p.getUnitPrice());
 
-//		p.setUnitPrice(p.getUnitPrice() + 1);
-//		dao.updateProduct(p);
-//		
-//		System.out.println("After updating...");
-//		System.out.println("Product name = " + p.getProductName());
-//		System.out.println("Price        = $" + p.getUnitPrice());
+		p.setUnitPrice(p.getUnitPrice() + 1);
+		try {
+			dao.updateProduct(p);
+		} catch (DaoException e) {
+			System.out.println("Got a DAO Exception: " + e.getMessage());
+		}
+		
+		System.out.println("After updating...");
+		System.out.println("Product name = " + p.getProductName());
+		System.out.println("Price        = $" + p.getUnitPrice());
 				
 		ctx.close();
 	}
