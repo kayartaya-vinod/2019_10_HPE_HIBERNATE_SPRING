@@ -13,6 +13,13 @@ public class ProductManager {
 
 	@Autowired
 	private ProductDao dao;
+	
+	public ProductManager() {
+	}
+	
+	public ProductManager(ProductDao dao) {
+		this.dao = dao;
+	}
 
 	@Transactional(rollbackFor = DaoException.class)
 	public void updateProducts() throws DaoException {

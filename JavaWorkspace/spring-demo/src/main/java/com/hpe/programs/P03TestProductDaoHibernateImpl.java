@@ -29,6 +29,10 @@ public class P03TestProductDaoHibernateImpl {
 		list = dao.getProductsByPriceRange(min, max);
 		System.out.printf("There are %d products between $%.1f and $%.1f\n", list.size(), min, max);
 
+		list = dao.getProductsByCategory("Beverages");
+		System.out.printf("There are %d beverages\n", list.size());
+
+		
 		list = dao.getDiscontinuedProducts();
 		System.out.printf("There are %d discontinued products\n", list.size());
 
@@ -42,12 +46,12 @@ public class P03TestProductDaoHibernateImpl {
 		System.out.println("Product name = " + p.getProductName());
 		System.out.println("Price        = $" + p.getUnitPrice());
 
-		p.setUnitPrice(p.getUnitPrice() + 1);
-		dao.updateProduct(p);
-		
-		System.out.println("After updating...");
-		System.out.println("Product name = " + p.getProductName());
-		System.out.println("Price        = $" + p.getUnitPrice());
+//		p.setUnitPrice(p.getUnitPrice() + 1);
+//		dao.updateProduct(p);
+//		
+//		System.out.println("After updating...");
+//		System.out.println("Product name = " + p.getProductName());
+//		System.out.println("Price        = $" + p.getUnitPrice());
 				
 		ctx.close();
 	}

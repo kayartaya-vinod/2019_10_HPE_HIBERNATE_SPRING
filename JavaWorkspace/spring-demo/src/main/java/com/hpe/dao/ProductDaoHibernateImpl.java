@@ -10,11 +10,18 @@ import org.springframework.stereotype.Repository;
 
 import com.hpe.entity.Product;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Repository("dao")
 public class ProductDaoHibernateImpl implements ProductDao {
 
 	@Autowired(required = false)
 	private HibernateTemplate template;
+
+	public void setTemplate(HibernateTemplate template) {
+		this.template = template;
+	}
 
 	@Override
 	public void addProduct(Product product) throws DaoException {
@@ -28,7 +35,7 @@ public class ProductDaoHibernateImpl implements ProductDao {
 
 	@Override
 	public void updateProduct(Product product) throws DaoException {
-		if(product.getUnitPrice()<2) {
+		if (product.getUnitPrice() < 2) {
 			throw new DaoException("Product price is too low!");
 		}
 		template.merge(product);
@@ -81,16 +88,19 @@ public class ProductDaoHibernateImpl implements ProductDao {
 		return (List<Product>) template.find(hql);
 	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
+	@SuppressWarnings({ "unchecked" })
 	@Override
 	public List<Product> getProductsByCategory(String categoryName) throws DaoException {
-		String hql = "from Product where category.categoryName=?0";
-		return (List<Product>) template.find(hql, categoryName);
+		DetachedCriteria dc = DetachedCriteria.forClass(Product.class);
+		dc.createAlias("category", "c");
+		dc.add(Restrictions.eq("c.categoryName", categoryName));
+		return (List<Product>) template.findByCriteria(dc);
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
 	public long count() throws DaoException {
+		log.info("From within ProductDaoHibernateImpl.count() method");
 		return (long) template.find("select count(p) from Product p").get(0);
 	}
 
