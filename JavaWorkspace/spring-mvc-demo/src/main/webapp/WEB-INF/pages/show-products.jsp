@@ -10,8 +10,10 @@
 	<div>
 		<h1>Product Management System</h1>
 		<hr>
+		<h2>List of all products</h2>
 		
-		<a href="./all-products">Product list</a>
+		
+		
 	</div>
 </body>
 </html>

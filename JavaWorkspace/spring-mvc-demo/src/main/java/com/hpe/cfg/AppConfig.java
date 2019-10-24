@@ -16,16 +16,18 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.hpe.entity.Category;
 import com.hpe.entity.Product;
 import com.hpe.entity.Supplier;
 
+@EnableWebMvc
 @EnableTransactionManagement
 @EnableAspectJAutoProxy
 @Configuration
 @PropertySource("classpath:jdbc-info.properties")
-@ComponentScan(basePackages = { "com.hpe.dao", "com.hpe.aspects" })
+@ComponentScan(basePackages = { "com.hpe.dao", "com.hpe.aspects", "com.hpe.web" })
 public class AppConfig {
 
 	@Value("${jdbc.driver_class_name}")
