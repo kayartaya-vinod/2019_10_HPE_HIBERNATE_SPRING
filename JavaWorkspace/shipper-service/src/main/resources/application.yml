@@ -5,7 +5,7 @@ spring:
       name: shipper-service
    datasource:
       driver-class-name: org.h2.Driver
-      url: jdbc:h2:tcp://localhost/~/2019_10_HIBERNATE_WITH_SPRING_HPE
+      url: jdbc:h2:tcp://localhost/~/${database:2019_10_HIBERNATE_WITH_SPRING_HPE}
       username: sa
       password: 
    jpa:

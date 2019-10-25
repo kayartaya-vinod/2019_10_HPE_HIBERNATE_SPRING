@@ -22,7 +22,7 @@ public class ShipperApplication {
 		return ResponseEntity.ok(dao.findById(id).get());
 	}
 
-	@GetMapping("/")
+	@GetMapping
 	public ResponseEntity<?> get() {
 		return ResponseEntity.ok(dao.findAll());
 	}
